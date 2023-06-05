@@ -20,7 +20,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android.get
+        android:id="@+id/constrainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
@@ -33,6 +33,7 @@
             android:layout_marginTop="68dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,6 +45,7 @@
             android:layout_marginTop="112dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,6 +57,7 @@
             android:layout_marginTop="88dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,6 +69,7 @@
             android:layout_marginTop="168dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,6 +81,7 @@
             android:layout_marginTop="212dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,6 +93,7 @@
             android:layout_marginTop="268dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_6"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,6 +105,7 @@
             android:layout_marginTop="304dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_7"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,6 +117,7 @@
             android:layout_marginTop="316dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_8"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,6 +129,7 @@
             android:layout_marginTop="396dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_9"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,6 +141,7 @@
             android:layout_marginTop="376dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -143,6 +153,7 @@
             android:layout_marginTop="448dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,6 +165,7 @@
             android:layout_marginTop="448dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_12"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -165,6 +177,7 @@
             android:layout_marginTop="516dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -176,6 +189,7 @@
             android:layout_marginTop="588dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_14"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -187,6 +201,7 @@
             android:layout_marginTop="588dp"
             android:background="@drawable/rectangle_image_button"
             android:src="@mipmap/island"
+            android:accessibilityPaneTitle="island_15"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -202,4 +217,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
