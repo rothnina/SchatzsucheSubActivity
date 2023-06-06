@@ -1,9 +1,14 @@
 package de.hsas.inf.schatzsuchesubactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private int counter = 0;
     private static final int MAX_TRIES = 3;
 
+    private ActivityResultLauncher<Intent> resultLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d("MAIN", "treasure = " + treasure);
             Log.d("MAIN", "seaMonster= " + seaMonster);
             setImageButtonState(true);
+        });
+        resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+            }
         });
 
     }
@@ -113,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.scores) {
-            //TODO launcher
+            Intent startScores = new Intent(MainActivity.this, Scores.class);
+            resultLauncher.launch(startScores);
         }
 
         return super.onOptionsItemSelected(item);

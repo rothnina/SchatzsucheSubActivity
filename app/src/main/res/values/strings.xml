@@ -8,6 +8,7 @@
     <string name="previous">Previous</string>
 
     <string name="scores">Scores</string>
+    <string name="clearScores">Clear Scores</string>
     <string name="hideTreasure">HIDE TREASURE</string>
 
 </resources>
