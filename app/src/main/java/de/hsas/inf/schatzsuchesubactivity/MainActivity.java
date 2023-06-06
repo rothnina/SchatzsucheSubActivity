@@ -3,19 +3,13 @@ package de.hsas.inf.schatzsuchesubactivity;
 import android.os.Bundle;
 
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.WindowCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import de.hsas.inf.schatzsuchesubactivity.databinding.ActivityMainBinding;
 
@@ -33,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout cl;
     private MaterialButton btnHideTreasure;
     private int treasure;
+    private int seaMonster;
     private static final int MAX_ISLANDS = 15;
     private int counter = 0;
     private static final int MAX_TRIES = 3;
@@ -51,28 +46,37 @@ public class MainActivity extends AppCompatActivity {
             ImageButton btn = (ImageButton) cl.getChildAt(i);
             btn.setEnabled(false);
             btn.setOnClickListener(v -> {
-                checkForTreasure(btn);
+                checkForTreasureAndSeaMonster(btn);
             });
         }
         btnHideTreasure = findViewById(R.id.btn_hideTreasure);
         btnHideTreasure.setOnClickListener(v ->{
             btnHideTreasure.setEnabled(false);
             treasure = new Random().nextInt(MAX_ISLANDS-1)+1;
+            do {
+                seaMonster = new Random().nextInt(MAX_ISLANDS-1)+1;
+            } while(treasure == seaMonster);
             Log.d("MAIN", "treasure = " + treasure);
+            Log.d("MAIN", "seaMonster= " + seaMonster);
             setImageButtonState(true);
-
-
         });
 
     }
-    public void checkForTreasure(ImageButton btn){
-        Log.d("MAIN checkForTreasure()", "btn.getId(): " + btn.getId());
+    public void checkForTreasureAndSeaMonster(ImageButton btn){
+        Log.d("MAIN checkForTreasureAndSeaMonster()", "btn.getId(): " + btn.getId());
         String treasureId = "island_" + treasure;
-        Log.d("MAIN checkForTreasure()", "TreasureId: " + treasureId);
+        Log.d("MAIN checkForTreasureAndSeaMonster()", "TreasureId: " + treasureId);
+        String seaMonsterId = "island_" + seaMonster;
+        Log.d("MAIN checkForTreasureAndSeaMonster()", "SeaMonsterId: " + seaMonsterId);
         if (btn.getAccessibilityPaneTitle().equals(treasureId)){
             Log.d("MAIN checkForTreasure", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
-           //btn.setImageResource(R.mipmap.);
-           setImageButtonState(false);
+            btn.setImageResource(R.mipmap.treasure);
+            setImageButtonState(false);
+        }
+        else if (btn.getAccessibilityPaneTitle().equals(seaMonsterId)) {
+            Log.d("MAIN checkForSeaMonster", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
+            btn.setImageResource(R.mipmap.seamonster);
+            setImageButtonState(false);
         }
         else{
             if (counter < MAX_TRIES) {
