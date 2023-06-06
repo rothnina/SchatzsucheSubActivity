@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             if (counter < MAX_TRIES) {
                 counter++;
                 Log.d("MAIN checkForTreasure", "counter = " + counter);
-                btn.setImageResource(R.mipmap.ic_launcher);
+                btn.setImageResource(R.mipmap.wave);
             }
             else{
                 setImageButtonState(false);
