@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
     private static final int MAX_TRIES = 3;
 
     private ActivityResultLauncher<Intent> resultLauncher;
+
+    private FileIOScores fileIOScores;
+    private ScoreItem scoreItem;
+    private String scoreStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("MAIN checkForTreasureAndSeaMonster()", "TreasureId: " + treasureId);
         String seaMonsterId = "island_" + seaMonster;
         Log.d("MAIN checkForTreasureAndSeaMonster()", "SeaMonsterId: " + seaMonsterId);
+        fileIOScores = new FileIOScores(this);
         if (btn.getAccessibilityPaneTitle().equals(treasureId)){
             Log.d("MAIN checkForTreasure", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.treasure);
@@ -89,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
         else if (btn.getAccessibilityPaneTitle().equals(seaMonsterId)) {
             Log.d("MAIN checkForSeaMonster", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.seamonster);
+            scoreItem = new ScoreItem(-1, LocalDateTime.now());
+            scoreStr = scoreItem.toString();
+            fileIOScores.writeFile("Scores.txt", scoreStr);
+            fileIOScores.printFileContent("Scores.txt");
             setImageButtonState(false);
         }
         else{
