@@ -18,6 +18,7 @@ public class Scores extends AppCompatActivity {
     private TextView score1, score2, score3, score4, score5;
     private FileIOScores fileIOScores;
     private ArrayList<ScoreItem> scores;
+    private static final String fileName = "Scores.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,21 +32,27 @@ public class Scores extends AppCompatActivity {
         score5 = findViewById(R.id.score_5);
 
         fileIOScores = new FileIOScores(this);
-        scores = fileIOScores.readScores("Scores.txt");
+        scores = fileIOScores.readScores(fileName);
         Log.i("Im ScoresView", "vor tv.settext");
-        fileIOScores.printFileContent("Scores.txt");
+        fileIOScores.printFileContent(fileName);
 
-        for (int i=0; i<5; i++){
-            TextView score = (TextView) ll.getChildAt(i+1);
-            score.setText(scores.get(scores.size()-1).toString());
+        Log.i("Scores.onCreate()", "scoresize = " + scores.size());
+        int size = 5;
+        if(scores.size()<size){
+            size= scores.size();
+        }
+        for (int i = 1; i<=size; i++){
+            TextView score = (TextView) ll.getChildAt(i);
+            score.setText(scores.get(scores.size()-i).toString());
         }
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fileIOScores.eraseContent("Scores.txt");
+                fileIOScores.eraseContent(fileName);
                 for (int i=0; i<5; i++){
                     TextView score = (TextView) ll.getChildAt(i+1);
+                    Log.i("Scores btnClear.setOnClickListener()", "score.size()" + scores.size());
                     score.setText("");
                 }
             }

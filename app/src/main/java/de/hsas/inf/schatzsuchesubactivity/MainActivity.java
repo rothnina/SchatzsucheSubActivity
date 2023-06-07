@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private int treasure;
     private int seaMonster;
     private static final int MAX_ISLANDS = 15;
-    private int counter = 0;
+    private int counter = 1;
     private static final int MAX_TRIES = 3;
+    private static final String fileName = "Scores.txt";
 
     private ActivityResultLauncher<Intent> resultLauncher;
 
@@ -90,24 +91,29 @@ public class MainActivity extends AppCompatActivity {
         if (btn.getAccessibilityPaneTitle().equals(treasureId)){
             Log.d("MAIN checkForTreasure", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.treasure);
+            scoreItem = new ScoreItem(counter, LocalDateTime.now());
+            fileIOScores.writeFile(fileName, scoreItem.toString());
+            fileIOScores.printFileContent(fileName);
             setImageButtonState(false);
         }
         else if (btn.getAccessibilityPaneTitle().equals(seaMonsterId)) {
             Log.d("MAIN checkForSeaMonster", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.seamonster);
             scoreItem = new ScoreItem(-1, LocalDateTime.now());
-            scoreStr = scoreItem.toString();
-            fileIOScores.writeFile("Scores.txt", scoreStr);
-            fileIOScores.printFileContent("Scores.txt");
+            fileIOScores.writeFile(fileName, scoreItem.toString());
+            fileIOScores.printFileContent(fileName);
             setImageButtonState(false);
         }
         else{
+            Log.d("MAIN checkForTreasure", "counter = " + counter);
+            btn.setImageResource(R.mipmap.wave);
             if (counter < MAX_TRIES) {
                 counter++;
-                Log.d("MAIN checkForTreasure", "counter = " + counter);
-                btn.setImageResource(R.mipmap.wave);
             }
             else{
+                scoreItem = new ScoreItem(4, LocalDateTime.now());
+                fileIOScores.writeFile(fileName, scoreItem.toString());
+                fileIOScores.printFileContent(fileName);
                 setImageButtonState(false);
             }
 
