@@ -32,35 +32,11 @@
             android:layout_height="wrap_content"
             android:text="@string/clearScores"
             />
-        <TextView
-            android:id="@+id/score_1"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
-            />
-        <TextView
-            android:id="@+id/score_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            />
-        <TextView
-            android:id="@+id/score_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            />
-        <TextView
-            android:id="@+id/score_4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
-            />
-        <TextView
-            android:id="@+id/score_5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:scrollbars="vertical"
             />
 
     </LinearLayout>

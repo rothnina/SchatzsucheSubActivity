@@ -1,6 +1,8 @@
 package de.hsas.inf.schatzsuchesubactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +16,14 @@ import java.util.ArrayList;
 public class Scores extends AppCompatActivity {
 
     private LinearLayout ll;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private MiniAdapter adapter;
     private Button btnClear;
     private TextView score1, score2, score3, score4, score5;
     private FileIOScores fileIOScores;
     private ArrayList<ScoreItem> scores;
+    private ArrayList<String> scoreStrings = new ArrayList<String>();
     private static final String fileName = "Scores.txt";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,36 +31,32 @@ public class Scores extends AppCompatActivity {
         setContentView(R.layout.activity_scores);
         ll = findViewById(R.id.linearLayout);
         btnClear = findViewById(R.id.btnClear);
-        score1 = findViewById(R.id.score_1);
-        score2 = findViewById(R.id.score_2);
-        score3 = findViewById(R.id.score_3);
-        score4 = findViewById(R.id.score_4);
-        score5 = findViewById(R.id.score_5);
+        recyclerView = findViewById(R.id.recyclerView);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         fileIOScores = new FileIOScores(this);
         scores = fileIOScores.readScores(fileName);
         Log.i("Im ScoresView", "vor tv.settext");
         fileIOScores.printFileContent(fileName);
 
+        adapter = new MiniAdapter(scoreStrings);
+        recyclerView.setAdapter(adapter);
+        for (ScoreItem si : scores){
+            Log.d("ScoreItem", si.toString());
+            adapter.add(si.toString());
+        }
+        Log.i("ScoreItemAmount", scoreStrings.toString());
+
+
         Log.i("Scores.onCreate()", "scoresize = " + scores.size());
-        int size = 5;
-        if(scores.size()<size){
-            size= scores.size();
-        }
-        for (int i = 1; i<=size; i++){
-            TextView score = (TextView) ll.getChildAt(i);
-            score.setText(scores.get(scores.size()-i).toString());
-        }
 
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 fileIOScores.eraseContent(fileName);
-                for (int i=0; i<5; i++){
-                    TextView score = (TextView) ll.getChildAt(i+1);
-                    Log.i("Scores btnClear.setOnClickListener()", "score.size()" + scores.size());
-                    score.setText("");
-                }
+                //TODO load with no items
             }
         });
     }
