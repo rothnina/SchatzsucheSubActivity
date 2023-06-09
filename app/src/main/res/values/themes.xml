@@ -3,17 +3,23 @@
     <style name="Base.Theme.SchatzsucheSubActivity" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:background">
+            @color/white
+        </item>
         <item name="colorPrimary">
-            @color/black
+            @color/primaryColor
         </item>
         <item name="android:button">
             @style/btn
         </item>
+        <item name="android:actionBarStyle">
+            @style/appBar
+        </item>
     </style>
 
     <style name="appBar"
-        parent="android:TextAppearance.Holo.Widget.ActionBar.Menu">
-        <item name="android:textColor">
+        parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">
             @color/secondColor
         </item>
     </style>
