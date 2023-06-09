@@ -61,4 +61,12 @@ public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolde
         notifyItemInserted(sz);
         notifyItemChanged(sz);
     }
+
+    public void clear(){
+        for (int i = 0; i < content.size(); i++){
+            content.remove(i);
+            notifyItemRemoved(i);
+            notifyDataSetChanged();
+        }
+    }
 }
