@@ -3,7 +3,31 @@
     <style name="Base.Theme.SchatzsucheSubActivity" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">
+            @color/black
+        </item>
+        <item name="android:button">
+            @style/btn
+        </item>
     </style>
+
+    <style name="appBar"
+        parent="android:TextAppearance.Holo.Widget.ActionBar.Menu">
+        <item name="android:textColor">
+            @color/secondColor
+        </item>
+    </style>
+
+    <style name="btn"
+        parent="android:Widget.Button">
+        <item name="android:background">
+            @color/secondColor
+        </item>
+        <item name="android:textColor">
+            @color/white
+        </item>
+    </style>
+
 
     <style name="Theme.SchatzsucheSubActivity" parent="Base.Theme.SchatzsucheSubActivity" />
 </resources>
