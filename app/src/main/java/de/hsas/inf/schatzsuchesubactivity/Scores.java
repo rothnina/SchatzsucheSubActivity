@@ -56,7 +56,7 @@ public class Scores extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fileIOScores.eraseContent(fileName);
-                //TODO load with no items
+                adapter.clear();
             }
         });
     }
