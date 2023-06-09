@@ -32,10 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ConstraintLayout cl;
     private MaterialButton btnHideTreasure;
-    private int treasure;
-    private int seaMonster;
     private static final int MAX_ISLANDS = 15;
-    private int counter = 1;
     private static final int MAX_TRIES = 3;
     private static final String fileName = "Scores.txt";
 
@@ -55,22 +52,28 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         cl = findViewById(R.id.constrainLayout);
+        Game game = new Game(this, MAX_TRIES);
+        fileIOScores = new FileIOScores(this);
+
         for(int i=0; i<MAX_ISLANDS; i++) {
             ImageButton btn = (ImageButton) cl.getChildAt(i);
             btn.setEnabled(false);
             btn.setOnClickListener(v -> {
-                checkForTreasureAndSeaMonster(btn);
+
+                scoreItem = game.checkForTreasureAndSeaMonster(btn);
+                if (scoreItem != null){
+                    fileIOScores.writeFile(fileName, scoreItem.toString());
+                    fileIOScores.printFileContent(fileName);
+                    setImageButtonState(false);
+                    setMaterialButtonState();
+                }
+
             });
         }
         btnHideTreasure = findViewById(R.id.btn_hideTreasure);
         btnHideTreasure.setOnClickListener(v ->{
             btnHideTreasure.setEnabled(false);
-            treasure = new Random().nextInt(MAX_ISLANDS-1)+1;
-            do {
-                seaMonster = new Random().nextInt(MAX_ISLANDS-1)+1;
-            } while(treasure == seaMonster);
-            Log.d("MAIN", "treasure = " + treasure);
-            Log.d("MAIN", "seaMonster= " + seaMonster);
+           game.hideTreasureAndSeamonster();
             setImageButtonState(true);
         });
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -81,49 +84,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void checkForTreasureAndSeaMonster(ImageButton btn){
-        Log.d("MAIN checkForTreasureAndSeaMonster()", "btn.getId(): " + btn.getId());
-        String treasureId = "island_" + treasure;
-        Log.d("MAIN checkForTreasureAndSeaMonster()", "TreasureId: " + treasureId);
-        String seaMonsterId = "island_" + seaMonster;
-        Log.d("MAIN checkForTreasureAndSeaMonster()", "SeaMonsterId: " + seaMonsterId);
-        fileIOScores = new FileIOScores(this);
-        if (btn.getAccessibilityPaneTitle().equals(treasureId)){
-            Log.d("MAIN checkForTreasure", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
-            btn.setImageResource(R.mipmap.treasure);
-            scoreItem = new ScoreItem(counter, LocalDateTime.now());
-            fileIOScores.writeFile(fileName, scoreItem.toString());
-            fileIOScores.printFileContent(fileName);
-            setImageButtonState(false);
-        }
-        else if (btn.getAccessibilityPaneTitle().equals(seaMonsterId)) {
-            Log.d("MAIN checkForSeaMonster", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
-            btn.setImageResource(R.mipmap.seamonster);
-            scoreItem = new ScoreItem(-1, LocalDateTime.now());
-            fileIOScores.writeFile(fileName, scoreItem.toString());
-            fileIOScores.printFileContent(fileName);
-            setImageButtonState(false);
-        }
-        else{
-            Log.d("MAIN checkForTreasure", "counter = " + counter);
-            btn.setImageResource(R.mipmap.wave);
-            if (counter < MAX_TRIES) {
-                counter++;
-            }
-            else{
-                scoreItem = new ScoreItem(4, LocalDateTime.now());
-                fileIOScores.writeFile(fileName, scoreItem.toString());
-                fileIOScores.printFileContent(fileName);
-                setImageButtonState(false);
-            }
 
-        }
 
-    }
+
     public void setImageButtonState(boolean bool){
         for(int j=0; j<MAX_ISLANDS; j++){
             ImageButton i_btn = (ImageButton) cl.getChildAt(j);
             i_btn.setEnabled(bool);
+        };
+    }
+    public void setMaterialButtonState(){
+        btnHideTreasure.setEnabled(true);
+    }
+    public void setImageButtonImage(){
+        for(int j=0; j<MAX_ISLANDS; j++){
+            ImageButton i_btn = (ImageButton) cl.getChildAt(j);
+            i_btn.setImageResource(R.mipmap.island);
         };
     }
     @Override
