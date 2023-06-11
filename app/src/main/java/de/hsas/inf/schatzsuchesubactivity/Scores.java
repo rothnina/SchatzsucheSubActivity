@@ -7,7 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,6 +28,7 @@ public class Scores extends AppCompatActivity {
     private ArrayList<ScoreItem> scores;
     private ArrayList<String> scoreStrings = new ArrayList<String>();
     private static final String fileName = "Scores.txt";
+    private ImageView seamonster;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,12 @@ public class Scores extends AppCompatActivity {
         ll = findViewById(R.id.linearLayout);
         btnClear = findViewById(R.id.btnClear);
         recyclerView = findViewById(R.id.recyclerView);
+        seamonster = findViewById(R.id.iv_anim);
+
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_rotate);
+        seamonster.startAnimation(anim);
+
+
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
