@@ -57,16 +57,20 @@ public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolde
 
     public void add(String item){
         int sz = content.size();
-        content.add(sz, item);
+        if (sz >= 5){
+            content.remove(0);
+            content.add(sz-1, item);
+        }
+        else {
+            content.add(sz, item);
+        }
         notifyItemInserted(sz);
         notifyItemChanged(sz);
     }
 
     public void clear(){
-        for (int i = 0; i < content.size(); i++){
-            content.remove(i);
-            notifyItemRemoved(i);
-            notifyDataSetChanged();
-        }
+        int sz = content.size();
+        content.clear();
+        notifyItemRangeRemoved(0,sz);
     }
 }
