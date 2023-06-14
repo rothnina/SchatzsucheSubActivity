@@ -1,39 +1,34 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.SchatzsucheSubActivity" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:background">
             @color/white
         </item>
         <item name="colorPrimary">
             @color/primaryColor
         </item>
-        <item name="android:button">
+        <item name="colorPrimaryDark">
+            @color/primaryColorDark
+        </item>
+        <item name="colorSecondary">
+            @color/secondColor
+        </item>
+        <item name="android:buttonStyle">
             @style/btn
         </item>
-        <item name="android:actionBarStyle">
-            @style/appBar
-        </item>
     </style>
-
-    <style name="appBar"
-        parent="Widget.AppCompat.ActionBar">
+    <style name="toolBar">
         <item name="android:background">
-            @color/secondColor
+            @color/waterBlue
         </item>
     </style>
-
-    <style name="btn"
-        parent="android:Widget.Button">
+    <style name="btn" parent="android:Widget.Button">
+        <item name="android:textSize">
+            300sp
+        </item>
         <item name="android:background">
-            @color/secondColor
-        </item>
-        <item name="android:textColor">
-            @color/white
+            @color/waterBlue
         </item>
     </style>
-
-
     <style name="Theme.SchatzsucheSubActivity" parent="Base.Theme.SchatzsucheSubActivity" />
 </resources>
