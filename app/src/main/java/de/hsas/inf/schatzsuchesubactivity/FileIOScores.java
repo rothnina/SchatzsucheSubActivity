@@ -1,10 +1,6 @@
 package de.hsas.inf.schatzsuchesubactivity;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.StyleSpan;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;

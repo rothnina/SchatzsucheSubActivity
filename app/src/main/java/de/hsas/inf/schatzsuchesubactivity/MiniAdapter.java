@@ -14,8 +14,6 @@ import java.util.ArrayList;
 public class MiniAdapter extends RecyclerView.Adapter<MiniAdapter.FirstViewHolder> {
     private ArrayList<String> content;
     private Context context;
-    private int position;
-    //private int drawable = R.id.
 
     @NonNull
     @Override

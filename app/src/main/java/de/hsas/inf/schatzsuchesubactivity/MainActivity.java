@@ -11,10 +11,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.Log;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import de.hsas.inf.schatzsuchesubactivity.databinding.ActivityMainBinding;
 
@@ -22,12 +20,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
-import java.time.LocalDateTime;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
     private ConstraintLayout cl;
@@ -40,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
     private FileIOScores fileIOScores;
     private ScoreItem scoreItem;
-    private String scoreStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         cl = findViewById(R.id.constrainLayout);
-        Game game = new Game(this, MAX_TRIES);
+        Game game = new Game(MAX_TRIES);
         fileIOScores = new FileIOScores(this);
 
         for(int i=0; i<MAX_ISLANDS; i++) {
@@ -73,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
         btnHideTreasure = findViewById(R.id.btn_hideTreasure);
         btnHideTreasure.setOnClickListener(v ->{
             btnHideTreasure.setEnabled(false);
-           game.hideTreasureAndSeamonster();
+            btnHideTreasure.setText(R.string.searchTreasure);
+            game.hideTreasureAndSeamonster();
+            setImageButtonImage();
             setImageButtonState(true);
         });
         resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -85,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     public void setImageButtonState(boolean bool){
         for(int j=0; j<MAX_ISLANDS; j++){
             ImageButton i_btn = (ImageButton) cl.getChildAt(j);
@@ -95,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void setMaterialButtonState(){
         btnHideTreasure.setEnabled(true);
+        btnHideTreasure.setText(R.string.hideTreasure);
     }
     public void setImageButtonImage(){
         for(int j=0; j<MAX_ISLANDS; j++){
@@ -104,19 +99,14 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.scores) {
             Intent startScores = new Intent(MainActivity.this, Scores.class);
             resultLauncher.launch(startScores);

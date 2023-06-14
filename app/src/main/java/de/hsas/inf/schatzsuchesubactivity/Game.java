@@ -3,8 +3,6 @@ package de.hsas.inf.schatzsuchesubactivity;
 import android.util.Log;
 import android.widget.ImageButton;
 
-import com.google.android.material.button.MaterialButton;
-
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -17,15 +15,11 @@ public class Game {
 
     private ScoreItem scoreItem;
 
-    private MainActivity parent;
-
-    public Game(MainActivity parent, int maxTries){
-        this.parent = parent;
+    public Game(int maxTries){
         this.MAX_TRIES = maxTries;
     }
 
     public void hideTreasureAndSeamonster(){
-        parent.setImageButtonImage();
         treasure = new Random().nextInt(MAX_ISLANDS-1)+1;
         counter = 1;
         scoreItem = null;
@@ -46,12 +40,10 @@ public class Game {
             Log.d("MAIN checkForTreasure", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.treasure);
             scoreItem = new ScoreItem(counter, LocalDateTime.now());
-            //parent.setImageButtonState(false);
         } else if (btn.getAccessibilityPaneTitle().equals(seaMonsterId)) {
             Log.d("MAIN checkForSeaMonster", "btn.getAccessibilityPaneTitle: " + btn.getAccessibilityPaneTitle());
             btn.setImageResource(R.mipmap.seamonster);
             scoreItem = new ScoreItem(-1, LocalDateTime.now());
-            //parent.setImageButtonState(false);
         } else {
             Log.d("MAIN checkForTreasure", "counter = " + counter);
             btn.setImageResource(R.mipmap.wave);
@@ -59,7 +51,6 @@ public class Game {
                 counter++;
             } else {
                 scoreItem = new ScoreItem(4, LocalDateTime.now());
-                //parent.setImageButtonState(false);
             }
 
         }

@@ -12,7 +12,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -23,7 +22,6 @@ public class Scores extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private MiniAdapter adapter;
     private Button btnClear;
-    private TextView score1, score2, score3, score4, score5;
     private FileIOScores fileIOScores;
     private ArrayList<ScoreItem> scores;
     private ArrayList<String> scoreStrings = new ArrayList<String>();
