@@ -16,11 +16,12 @@
         <item name="android:buttonStyle">
             @style/btn
         </item>
-
         <item name="materialThemeOverlay">
             @style/toolBar
         </item>
-
+        <item name="appBarLayoutStyle">
+            @style/toolBar
+        </item>
     </style>
     <style name="toolBar">
         <item name="android:background">
