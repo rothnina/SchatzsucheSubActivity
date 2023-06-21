@@ -30,7 +30,6 @@ public class Game {
         Log.d("MAIN", "seaMonster= " + seaMonster);
     }
     public ScoreItem checkForTreasureAndSeaMonster(ImageButton btn) {
-        Log.d("MAIN checkForTreasureAndSeaMonster()", "btn.getId(): " + btn.getId());
         String treasureId = "island_" + treasure;
         Log.d("MAIN checkForTreasureAndSeaMonster()", "TreasureId: " + treasureId);
         String seaMonsterId = "island_" + seaMonster;
